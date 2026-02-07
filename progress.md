@@ -35,8 +35,8 @@ Tracking work against `creation-copilot-plan.md`.
   - [x] views/child/create.php
   - [x] views/child/edit.php
 
-- [ ] **Session 8: Permissions (Optional)**
-  - [ ] permissions/ManageFamily.php
+- [x] **Session 8: Permissions (Optional)**
+  - [x] permissions/ManageFamily.php
 
 ### Notes
 - Initial plan captured; tasks above mirror `creation-copilot-plan.md`.
