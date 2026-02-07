@@ -23,9 +23,9 @@ Tracking work against `creation-copilot-plan.md`.
 - [x] **Session 4: Calendar Integration**
   - [x] Events.php
 
-- [ ] **Session 5: Profile Widget**
-  - [ ] widgets/ChildrenWidget.php
-  - [ ] views/widgets/children.php
+- [x] **Session 5: Profile Widget**
+  - [x] widgets/ChildrenWidget.php
+  - [x] views/widgets/children.php
 
 - [ ] **Session 6: CRUD Controller**
   - [ ] controllers/ChildController.php
