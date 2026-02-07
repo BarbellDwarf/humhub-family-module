@@ -20,8 +20,8 @@ Tracking work against `creation-copilot-plan.md`.
   - [x] migrations/m260206_220000_initial.php
   - [x] models/Child.php
 
-- [ ] **Session 4: Calendar Integration**
-  - [ ] Events.php
+- [x] **Session 4: Calendar Integration**
+  - [x] Events.php
 
 - [ ] **Session 5: Profile Widget**
   - [ ] widgets/ChildrenWidget.php
