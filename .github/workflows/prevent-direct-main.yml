@@ -1,0 +1,28 @@
+name: prevent-direct-main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  guard-main:
+    name: Block direct pushes to main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check commit source
+        run: |
+          msg="$(jq -r '.head_commit.message // ""' "$GITHUB_EVENT_PATH")"
+
+          if printf '%s' "$msg" | grep -qE '^Merge pull request'; then
+            echo "PR merge detected; allowed."
+            exit 0
+          fi
+
+          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
+            echo "Dependabot push allowed."
+            exit 0
+          fi
+
+          echo "Direct pushes to main are not allowed. Please open a pull request."
+          exit 1

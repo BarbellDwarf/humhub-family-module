@@ -1,0 +1,29 @@
+name: package-main-zip
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-zip:
+    name: Build zip artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create zip
+        run: |
+          zip -r family-module.zip . \
+            -x ".git/*" \
+               ".github/workflows/*" \
+               "progress.md"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: family-module
+          path: family-module.zip
+          retention-days: 14
