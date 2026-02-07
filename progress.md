@@ -30,10 +30,10 @@ Tracking work against `creation-copilot-plan.md`.
 - [x] **Session 6: CRUD Controller**
   - [x] controllers/ChildController.php
 
-- [ ] **Session 7: Forms and Views**
-  - [ ] views/child/_form.php
-  - [ ] views/child/create.php
-  - [ ] views/child/edit.php
+- [x] **Session 7: Forms and Views**
+  - [x] views/child/_form.php
+  - [x] views/child/create.php
+  - [x] views/child/edit.php
 
 - [ ] **Session 8: Permissions (Optional)**
   - [ ] permissions/ManageFamily.php
