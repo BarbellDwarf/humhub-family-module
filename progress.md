@@ -12,9 +12,9 @@ Tracking work against `creation-copilot-plan.md`.
   - [x] module.json
   - [x] LICENSE
 
-- [ ] **Session 2: Module Core Classes**
-  - [ ] Module.php
-  - [ ] config.php
+- [x] **Session 2: Module Core Classes**
+  - [x] Module.php
+  - [x] config.php
 
 - [ ] **Session 3: Database Layer**
   - [ ] migrations/m260206_220000_initial.php
