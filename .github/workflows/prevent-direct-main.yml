@@ -20,9 +20,11 @@ jobs:
           fi
 
           is_merge_commit=false
-          if printf '%s' "$msg" | grep -qiE '^Merge (pull request|branch)'; then
+          if printf '%s' "$msg" | grep -qiE '^Merge pull request #[0-9]+'; then
             is_merge_commit=true
-          elif printf '%s' "$msg" | grep -qiE '^.+\(#[0-9]+\)$'; then
+          elif printf '%s' "$msg" | grep -qiE '^Merge branch '; then
+            is_merge_commit=true
+          elif printf '%s' "$msg" | grep -qiE '^.+ \(#[0-9]+\)$'; then
             is_merge_commit=true
           fi
 
