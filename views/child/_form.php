@@ -19,19 +19,10 @@
  * depending on your user profile fields setup.
  */
 
-use humhub\modules\user\models\User;
+use humhub\modules\user\widgets\UserPicker;
 use humhub\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
-
-$userQuery = User::find()
-    ->select(['id', 'display_name'])
-    ->orderBy(['display_name' => SORT_ASC])
-    ->limit(500)
-    ->asArray()
-    ->all();
-$users = ArrayHelper::map($userQuery, 'id', 'display_name');
 ?>
 
 <?php $form = ActiveForm::begin(['id' => 'child-form']); ?>
@@ -48,13 +39,17 @@ $users = ArrayHelper::map($userQuery, 'id', 'display_name');
     ->input('date', ['max' => date('Y-m-d')])
     ->hint(Yii::t('FamilyModule.base', 'Birth date cannot be in the future.')) ?>
 
-<?= $form->field($model, 'mother_id')
-    ->dropDownList($users, ['prompt' => Yii::t('FamilyModule.base', '-- Not specified --')])
-    ->hint(Yii::t('FamilyModule.base', 'Optional mother reference.')) ?>
+<?= $form->field($model, 'mother_guid')->widget(UserPicker::class, [
+    'maxSelection' => 1,
+    'placeholder' => Yii::t('FamilyModule.base', '-- Not specified --'),
+    'inputId' => 'mother-guid-picker',
+]) ?>
 
-<?= $form->field($model, 'father_id')
-    ->dropDownList($users, ['prompt' => Yii::t('FamilyModule.base', '-- Not specified --')])
-    ->hint(Yii::t('FamilyModule.base', 'Optional father reference.')) ?>
+<?= $form->field($model, 'father_guid')->widget(UserPicker::class, [
+    'maxSelection' => 1,
+    'placeholder' => Yii::t('FamilyModule.base', '-- Not specified --'),
+    'inputId' => 'father-guid-picker',
+]) ?>
 
 <div class="form-group">
     <?= Html::submitButton(Yii::t('FamilyModule.base', 'Save Child'), ['class' => 'btn btn-primary']) ?>

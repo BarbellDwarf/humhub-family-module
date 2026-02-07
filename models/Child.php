@@ -32,6 +32,16 @@ use yii\db\ActiveRecord;
 class Child extends ActiveRecord
 {
     /**
+     * @var string|null Guid of selected mother user (for picker)
+     */
+    public $mother_guid;
+
+    /**
+     * @var string|null Guid of selected father user (for picker)
+     */
+    public $father_guid;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -64,6 +74,7 @@ class Child extends ActiveRecord
             [['first_name', 'last_name'], 'string', 'max' => 100],
             ['birth_date', 'date', 'format' => 'php:Y-m-d'],
             ['birth_date', 'validateBirthDate'],
+            [['mother_guid', 'father_guid'], 'safe'],
             [
                 ['user_id'],
                 'exist',
@@ -87,6 +98,50 @@ class Child extends ActiveRecord
                 'skipOnError' => true
             ],
         ];
+    }
+
+    /**
+     * Populate picker guids after fetching from DB.
+     */
+    public function afterFind()
+    {
+        parent::afterFind();
+
+        $this->mother_guid = $this->mother ? $this->mother->guid : null;
+        $this->father_guid = $this->father ? $this->father->guid : null;
+    }
+
+    /**
+     * Convert picker guids to IDs before validation/save.
+     *
+     * @return bool
+     */
+    public function beforeValidate()
+    {
+        $this->mother_id = $this->resolveGuidToId($this->mother_guid);
+        $this->father_id = $this->resolveGuidToId($this->father_guid);
+
+        return parent::beforeValidate();
+    }
+
+    /**
+     * Resolve a user guid to an ID.
+     *
+     * @param string|null $guid
+     * @return int|null
+     */
+    protected function resolveGuidToId($guid)
+    {
+        if (is_array($guid)) {
+            $guid = reset($guid);
+        }
+
+        if (empty($guid)) {
+            return null;
+        }
+
+        $user = User::findOne(['guid' => $guid]);
+        return $user ? $user->id : null;
     }
 
     /**
