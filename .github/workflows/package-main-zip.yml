@@ -18,7 +18,7 @@ jobs:
         run: |
           zip -r family-module.zip . \
             -x '.git/*' \
-               '.github/*' \
+               '.github/workflows/*' \
                'progress.md' \
                '*.log' \
                'tmp/*'
