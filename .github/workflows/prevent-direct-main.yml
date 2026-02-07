@@ -19,13 +19,20 @@ jobs:
             exit 1
           fi
 
-          if printf '%s' "$msg" | grep -qiE '^(Merge (pull request|branch).*|.*\(#([0-9]+)\))'; then
+          is_merge_commit=false
+          if printf '%s' "$msg" | grep -qiE '^Merge (pull request|branch)'; then
+            is_merge_commit=true
+          elif printf '%s' "$msg" | grep -qiE '^.+\(#[0-9]+\)$'; then
+            is_merge_commit=true
+          fi
+
+          if [ "$is_merge_commit" = true ]; then
             echo "Merge-based commit detected; allowed."
             exit 0
           fi
 
-          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
-            echo "Dependabot push allowed."
+          if [ "${{ github.actor }}" = "dependabot[bot]" ] && [ "$is_merge_commit" = true ]; then
+            echo "Dependabot merge commit allowed."
             exit 0
           fi
 
