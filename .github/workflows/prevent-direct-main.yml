@@ -24,8 +24,8 @@ jobs:
             exit 1
           fi
 
-          if printf '%s' "$msg" | grep -qE '^Merge pull request'; then
-            echo "PR merge detected; allowed."
+          if printf '%s' "$msg" | grep -qiE '^(Merge (pull request|branch))|(#([0-9]+))$'; then
+            echo "Merge-based commit detected; allowed."
             exit 0
           fi
 
