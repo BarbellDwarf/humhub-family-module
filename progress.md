@@ -16,9 +16,9 @@ Tracking work against `creation-copilot-plan.md`.
   - [x] Module.php
   - [x] config.php
 
-- [ ] **Session 3: Database Layer**
-  - [ ] migrations/m260206_220000_initial.php
-  - [ ] models/Child.php
+- [x] **Session 3: Database Layer**
+  - [x] migrations/m260206_220000_initial.php
+  - [x] models/Child.php
 
 - [ ] **Session 4: Calendar Integration**
   - [ ] Events.php
