@@ -31,10 +31,5 @@ jobs:
             exit 0
           fi
 
-          if [ "${{ github.actor }}" = "dependabot[bot]" ] && [ "$is_merge_commit" = true ]; then
-            echo "Dependabot merge commit allowed."
-            exit 0
-          fi
-
           echo "Direct pushes to main are not allowed. Please open a pull request."
           exit 1
