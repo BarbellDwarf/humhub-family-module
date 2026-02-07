@@ -15,16 +15,12 @@ jobs:
           msg="$(jq -r '.head_commit.message // ""' "$GITHUB_EVENT_PATH")"
 
           if [ -z "$msg" ]; then
-            echo "Unable to read commit message from event payload (missing head_commit.message). Verify push payload structure and workflow read permissions."
+            echo "Unable to read commit message from event. This workflow requires push event metadata."
             exit 1
           fi
 
           is_merge_commit=false
-          if printf '%s' "$msg" | grep -qiE '^Merge pull request #[0-9]+'; then
-            is_merge_commit=true
-          elif printf '%s' "$msg" | grep -qiE '^Merge branch '; then
-            is_merge_commit=true
-          elif printf '%s' "$msg" | grep -qiE '^.+ \(#[0-9]+\)$'; then
+          if printf '%s' "$msg" | grep -qiE '^(Merge pull request #[0-9]+|Merge branch |.+ \(#[0-9]+\)$)'; then
             is_merge_commit=true
           fi
 
