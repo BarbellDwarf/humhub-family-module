@@ -45,7 +45,7 @@ class Child extends ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class => [
+            [
                 'class' => TimestampBehavior::class,
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',

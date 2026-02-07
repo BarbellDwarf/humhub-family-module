@@ -25,7 +25,11 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$users = ArrayHelper::map(User::find()->all(), 'id', 'displayName');
+$users = ArrayHelper::map(
+    User::find()->limit(100)->orderBy(['id' => SORT_ASC])->all(),
+    'id',
+    'displayName'
+);
 ?>
 
 <?php $form = ActiveForm::begin(['id' => 'child-form']); ?>
