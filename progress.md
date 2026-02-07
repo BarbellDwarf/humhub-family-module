@@ -27,8 +27,8 @@ Tracking work against `creation-copilot-plan.md`.
   - [x] widgets/ChildrenWidget.php
   - [x] views/widgets/children.php
 
-- [ ] **Session 6: CRUD Controller**
-  - [ ] controllers/ChildController.php
+- [x] **Session 6: CRUD Controller**
+  - [x] controllers/ChildController.php
 
 - [ ] **Session 7: Forms and Views**
   - [ ] views/child/_form.php
