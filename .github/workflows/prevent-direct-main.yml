@@ -15,7 +15,7 @@ jobs:
           msg="$(jq -r '.head_commit.message // ""' "$GITHUB_EVENT_PATH")"
 
           if [ -z "$msg" ]; then
-            echo "Unable to read commit message; failing to protect main."
+            echo "Unable to read commit message from event payload (missing head_commit.message). Verify push payload structure and workflow read permissions."
             exit 1
           fi
 

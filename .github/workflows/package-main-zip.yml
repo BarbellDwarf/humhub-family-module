@@ -16,7 +16,7 @@ jobs:
 
       - name: Create zip
         run: |
-          # Exclude CI-only assets from the distributable.
+          # Exclude CI-only workflows from the distributable; keep other .github metadata if present.
           zip -r family-module.zip . \
             -x '.git/*' \
                '.github/workflows/*' \
