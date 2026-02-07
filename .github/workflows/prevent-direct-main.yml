@@ -12,7 +12,17 @@ jobs:
     steps:
       - name: Check commit source
         run: |
+          if ! command -v jq >/dev/null 2>&1; then
+            echo "jq is required but not available on runner."
+            exit 1
+          fi
+
           msg="$(jq -r '.head_commit.message // ""' "$GITHUB_EVENT_PATH")"
+
+          if [ -z "$msg" ]; then
+            echo "Unable to read commit message; failing to protect main."
+            exit 1
+          fi
 
           if printf '%s' "$msg" | grep -qE '^Merge pull request'; then
             echo "PR merge detected; allowed."

@@ -18,8 +18,10 @@ jobs:
         run: |
           zip -r family-module.zip . \
             -x ".git/*" \
-               ".github/workflows/*" \
-               "progress.md"
+               ".github/*" \
+               "progress.md" \
+               "*.log" \
+               "tmp/*"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
