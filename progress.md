@@ -4,13 +4,13 @@ Tracking work against `creation-copilot-plan.md`.
 
 ### Sessions & Tasks
 
-- [ ] **Session 1: Core Documentation & Module Foundation**
-  - [ ] README.md
-  - [ ] DEVELOPMENT.md
-  - [ ] TESTING.md
-  - [ ] CHANGELOG.md
-  - [ ] module.json
-  - [ ] LICENSE
+- [x] **Session 1: Core Documentation & Module Foundation**
+  - [x] README.md
+  - [x] DEVELOPMENT.md
+  - [x] TESTING.md
+  - [x] CHANGELOG.md
+  - [x] module.json
+  - [x] LICENSE
 
 - [ ] **Session 2: Module Core Classes**
   - [ ] Module.php
