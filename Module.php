@@ -15,6 +15,17 @@ use humhub\components\Module as BaseModule;
  */
 class Module extends BaseModule
 {
+    /**
+     * This module is only available on user profiles.
+     *
+     * Setting this flag to false prevents HumHub from trying to treat the
+     * module as a space module (which can trigger console lookups like
+     * `space/` and result in the InvalidRouteException seen in CI).
+     *
+     * @var bool
+     */
+    public $isSpaceModule = false;
+
     public const VERSION = '1.0.0';
 
     /**
