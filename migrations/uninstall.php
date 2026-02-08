@@ -24,7 +24,7 @@ class uninstall extends Migration
      */
     public function safeDown()
     {
-        echo "uninstall cannot be reverted.\n";
+        echo "Uninstall cannot be reverted.\n";
         return false;
     }
 }
