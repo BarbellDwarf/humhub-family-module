@@ -1,13 +1,17 @@
 # Family Management Module for HumHub
 
 ## Overview
-Manage family relationships and children profiles with birthday calendar integration for church/community use.
+Adds a Family tab to HumHub profiles for managing spouses and children, with optional links to existing user accounts.
+You can store manual details for non-user family members while still surfacing birthdays in the Calendar module for reminders.
+Designed for church and community contexts where family relationships need to be tracked alongside user profiles.
 
 ## Features
-- Add children to user profiles with or without linking existing user accounts
-- Track children's birthdays (uses linked profile birthdays when available)
+- Add spouses and children to user profiles
+- Link spouses/children to existing user accounts or store manual details
+- Relationship type support for children (child, grandchild, stepchild, foster child)
+- Track birthdays (uses linked profile birthdays when available)
 - Automatic birthday calendar integration
-- Profile links for children with accounts
+- Profile links for family members with accounts
 - Family management tab integrated into profile layout
 - Optional family diagram tab (configurable)
 - Privacy-respecting (manual details used only when no account is linked)
@@ -24,6 +28,14 @@ Manage family relationships and children profiles with birthday calendar integra
 5. The database tables will be created automatically.
 
 ## Usage
+### Adding a Spouse
+1. Navigate to your profile or another user's profile (if you have permissions).
+2. Open the Family tab from the profile menu.
+3. Click "Add Spouse".
+4. Optionally link a spouse user account.
+5. If no account is linked, enter First Name, Last Name, Birth Date.
+6. Click Save.
+
 ### Adding Children
 1. Navigate to your profile or another user's profile (if you have permissions).
 2. Open the Family tab from the profile menu to manage spouse/children.
@@ -39,8 +51,8 @@ Manage family relationships and children profiles with birthday calendar integra
 2. Open the Family tab in a user profile to see the diagram beneath the spouse/children sections.
 
 ### Birthday Calendar
-Children's birthdays automatically appear in the HumHub Calendar module as:
-"[Child Name] ([Parent Name]'s child)"
+Spouse and child birthdays automatically appear in the HumHub Calendar module as:
+"[Family Member Name] ([Parent Name]'s child)" or "[Spouse Name] ([User Name]'s spouse)"
 
 ### Privacy
 - Only profile owners and administrators can manage children.
@@ -56,7 +68,7 @@ See DEVELOPMENT.md for technical documentation and contribution guidelines.
 For issues or questions, please open a GitHub issue.
 
 ## License
-This module is licensed under the same license as HumHub (AGPLv3).
+This module is licensed under the MIT License. See LICENSE for details.
 
 ## Credits
 Developed for church and community management needs.
