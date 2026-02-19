@@ -1,0 +1,26 @@
+{
+  "id": "family",
+  "name": "Family Management",
+  "description": "Manage family relationships and children profiles with birthday calendar integration for church and community use",
+  "keywords": [
+    "family",
+    "children",
+    "relationships",
+    "birthday",
+    "calendar",
+    "church"
+  ],
+  "version": "3.0.0",
+  "humhub": {
+    "minVersion": "1.15",
+    "maxVersion": "2.0"
+  },
+  "authors": [
+    {
+      "name": "BarbellDwarf",
+      "homepage": "https://github.com/BarbellDwarf"
+    }
+  ],
+  "homepage": "https://github.com/BarbellDwarf/humhub-family-module",
+  "namespace": "humhub\\modules\\family"
+}
