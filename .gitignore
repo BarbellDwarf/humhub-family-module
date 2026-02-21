@@ -1,1 +1,15 @@
 .copilot/
+.idea/
+.vscode/
+.DS_Store
+
+# Runtime/test artifacts
+runtime/
+tmp/
+coverage/
+.phpunit.result.cache
+*.log
+
+# Keep repository AI instructions tracked
+!.github/
+!.github/copilot-instructions.md
