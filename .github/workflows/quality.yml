@@ -1,0 +1,21 @@
+name: Quality Checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  php-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate module.json
+        run: python3 -m json.tool module.json > /dev/null
+
+      - name: PHP syntax check
+        run: |
+          find . -type f -name "*.php" -not -path "./.git/*" -print0 | xargs -0 -n1 php -l

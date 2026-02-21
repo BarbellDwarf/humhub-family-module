@@ -1,0 +1,39 @@
+name: Release Module
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build module zip
+        run: |
+          set -euo pipefail
+          VERSION="${GITHUB_REF_NAME:-manual}"
+          STAGE_DIR="dist/family"
+          ZIP_NAME="family-${VERSION}.zip"
+
+          rm -rf dist
+          mkdir -p "${STAGE_DIR}"
+
+          cp -R assets config.php controllers Events.php integration LICENSE messages migrations models Module.php module.json permissions README.md resources views widgets CHANGELOG.md DEVELOPMENT.md "${STAGE_DIR}/"
+
+          (cd dist && zip -r "${ZIP_NAME}" family)
+          sha256sum "dist/${ZIP_NAME}" > "dist/${ZIP_NAME}.sha256"
+
+      - name: Publish GitHub release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.zip
+            dist/*.sha256

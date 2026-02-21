@@ -4,9 +4,9 @@
 
 This repository does not define module-local automated build/lint/test commands (`composer.json`, `phpunit.xml`, `codeception.yml`, `package.json`, and `Makefile` are not present in this module directory).
 
-Use the manual test suite in `TESTING.md`:
-- Full regression pass: run the checklist sections referenced in `TESTING.md` (especially sections 1, 2, 6, and 7 after changes).
-- Single targeted test: run one checklist section that matches your change (for example, only section **6. Birthday Calendar** when changing calendar integration).
+No module-local automated tests or lint targets are defined in this repository.
+- Full verification: run end-to-end checks in a HumHub instance (module enable, spouse/child CRUD, and calendar birthday rendering).
+- Single targeted verification: test only the affected flow (for example, calendar birthday rendering when changing `integration/*Calendar*` classes).
 
 ## High-level architecture
 

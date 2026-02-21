@@ -21,11 +21,18 @@ Designed for church and community contexts where family relationships need to be
 - Calendar module (for birthday integration)
 
 ## Installation
-1. Download or clone this repository.
+1. Download the latest module zip from GitHub Releases (recommended) or clone this repository.
 2. Copy the entire `family` folder to `protected/modules/` in your HumHub installation.
 3. Navigate to Administration → Modules.
 4. Find "Family Management" and click Enable.
 5. The database tables will be created automatically.
+
+## Updating
+1. Back up your current module folder and database.
+2. Download the latest `family-<version>.zip` from GitHub Releases and extract it.
+3. Replace the module files in `protected/modules/family` with the new release files.
+4. Run available database migrations in Administration → Information → Database.
+5. Go to Administration → Settings → Advanced and click **Save & Flush Caches**.
 
 ## Usage
 ### Adding a Spouse

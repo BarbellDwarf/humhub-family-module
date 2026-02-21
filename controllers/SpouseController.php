@@ -46,19 +46,19 @@ class SpouseController extends Controller
         $currentUser = Yii::$app->user->identity;
 
         if (!$currentUser instanceof User) {
-            throw new ForbiddenHttpException('You are not allowed to add a spouse record.');
+            throw new ForbiddenHttpException(Yii::t('FamilyModule.base', 'You are not allowed to add a spouse record.'));
         }
 
         $profileUser = $currentUser;
         if ($cguid) {
             $profileUser = User::findOne(['guid' => $cguid]);
             if (!$profileUser) {
-                throw new NotFoundHttpException('The requested profile does not exist.');
+                throw new NotFoundHttpException(Yii::t('FamilyModule.base', 'The requested profile does not exist.'));
             }
         }
 
-        if ($profileUser->id !== $currentUser->id && !$currentUser->isSystemAdmin()) {
-            throw new ForbiddenHttpException('You are not allowed to add a spouse record for this profile.');
+        if (!$this->canManageProfile($profileUser)) {
+            throw new ForbiddenHttpException(Yii::t('FamilyModule.base', 'You are not allowed to add a spouse record for this profile.'));
         }
         
         // Check if spouse already exists
@@ -102,12 +102,8 @@ class SpouseController extends Controller
     {
         $model = $this->findModel($id);
 
-        /** @var User $currentUser */
-        $currentUser = Yii::$app->user->identity;
-
-        // Check permission
-        if ($model->user_id !== $currentUser->id && !$currentUser->isSystemAdmin()) {
-            throw new ForbiddenHttpException('You are not allowed to edit this spouse record.');
+        if (!$this->canEdit($model)) {
+            throw new ForbiddenHttpException(Yii::t('FamilyModule.base', 'You are not allowed to edit this spouse record.'));
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -132,12 +128,8 @@ class SpouseController extends Controller
     {
         $model = $this->findModel($id);
 
-        /** @var User $currentUser */
-        $currentUser = Yii::$app->user->identity;
-
-        // Check permission
-        if ($model->user_id !== $currentUser->id && !$currentUser->isSystemAdmin()) {
-            throw new ForbiddenHttpException('You are not allowed to delete this spouse record.');
+        if (!$this->canEdit($model)) {
+            throw new ForbiddenHttpException(Yii::t('FamilyModule.base', 'You are not allowed to delete this spouse record.'));
         }
 
         $userGuid = $model->user->guid;
@@ -160,6 +152,26 @@ class SpouseController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested spouse does not exist.');
+        throw new NotFoundHttpException(Yii::t('FamilyModule.base', 'The requested spouse does not exist.'));
+    }
+
+    protected function canManageProfile(User $profileUser): bool
+    {
+        $currentUser = Yii::$app->user->identity;
+        if (!$currentUser instanceof User) {
+            return false;
+        }
+
+        return $currentUser->id === $profileUser->id || Yii::$app->user->isAdmin();
+    }
+
+    protected function canEdit(Spouse $spouse): bool
+    {
+        $currentUser = Yii::$app->user->identity;
+        if (!$currentUser instanceof User) {
+            return false;
+        }
+
+        return $currentUser->id === $spouse->user_id || Yii::$app->user->isAdmin();
     }
 }

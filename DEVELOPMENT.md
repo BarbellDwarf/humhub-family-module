@@ -80,9 +80,6 @@ Edit `models/Child.php` and add:
 ### Custom Permissions
 Implement `permissions/ManageFamily.php` for granular control
 
-## Testing Checklist
-See TESTING.md for comprehensive testing procedures
-
 ## Contributing
 1. Fork the repository
 2. Create feature branch

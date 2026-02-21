@@ -46,25 +46,25 @@ class Spouse extends ActiveRecord
                     var spouseGuid = $('#spouse-spouse_user_guid').val();
                     return !spouseGuid || spouseGuid === '' || spouseGuid === '[]';
                 }",
-                'message' => 'Either select a user account or enter name fields.'
+                'message' => Yii::t('FamilyModule.base', 'Either select a user account or enter name fields.')
             ],
             
-            [['user_id'], 'unique', 'message' => 'You already have a spouse record.'],
+            [['user_id'], 'unique', 'message' => Yii::t('FamilyModule.base', 'You already have a spouse record.')],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => 'User',
-            'spouse_user_id' => 'Spouse User Account',
-            'spouse_user_guid' => 'Spouse User Account',
-            'first_name' => 'First Name',
-            'last_name' => 'Last Name',
-            'birth_date' => 'Date of Birth',
-            'email' => 'Email',
-            'phone' => 'Phone',
+            'id' => Yii::t('FamilyModule.base', 'ID'),
+            'user_id' => Yii::t('FamilyModule.base', 'User'),
+            'spouse_user_id' => Yii::t('FamilyModule.base', 'Spouse User Account'),
+            'spouse_user_guid' => Yii::t('FamilyModule.base', 'Spouse User Account'),
+            'first_name' => Yii::t('FamilyModule.base', 'First Name'),
+            'last_name' => Yii::t('FamilyModule.base', 'Last Name'),
+            'birth_date' => Yii::t('FamilyModule.base', 'Date of Birth'),
+            'email' => Yii::t('FamilyModule.base', 'Email'),
+            'phone' => Yii::t('FamilyModule.base', 'Phone'),
         ];
     }
 

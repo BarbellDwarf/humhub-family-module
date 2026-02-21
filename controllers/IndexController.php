@@ -27,7 +27,7 @@ class IndexController extends ContentContainerController
     public function actionIndex()
     {
         if (!$this->contentContainer instanceof User) {
-            throw new NotFoundHttpException('User not found');
+            throw new NotFoundHttpException(Yii::t('FamilyModule.base', 'User not found'));
         }
 
         $user = $this->contentContainer;
